@@ -4,7 +4,6 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Mail, Lock, User, Camera, ArrowRight, Loader2 } from "lucide-react";
 
-
 import { useAuthStore } from "@/store/useAuthStore";
 import { 
   signInUser, 
@@ -15,7 +14,8 @@ import {
 
 export default function AuthForm({ mode }) {
   const router = useRouter();
-  const setAuth = useAuthStore((state) => state.setAuth);
+  
+  const login = useAuthStore((state) => state.login);
   
   const [formData, setFormData] = useState({ 
     username: "", 
@@ -26,7 +26,6 @@ export default function AuthForm({ mode }) {
   const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  // Logical checks for different modes
   const isSignup = mode === "signup";
   const isForgot = mode === "forgot";
   const isReset = mode === "reset";
@@ -42,12 +41,12 @@ export default function AuthForm({ mode }) {
       if (isLogin) {
         result = await signInUser({ email: formData.email, password: formData.password });
         if (result.success) {
-          setAuth(result.user, result.token); 
+       
+          login(result.user, result.token); 
           router.push("/dashboard");
         }
       } 
       else if (isSignup) {
-        // Using FormData for profile image upload compatibility
         const data = new FormData();
         data.append("username", formData.username);
         data.append("email", formData.email);
@@ -87,7 +86,6 @@ export default function AuthForm({ mode }) {
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-5">
-          {/* Profile Picture Upload - Signup only */}
           {isSignup && (
             <div className="flex justify-center mb-6">
               <label className="relative cursor-pointer group">
@@ -103,7 +101,6 @@ export default function AuthForm({ mode }) {
             </div>
           )}
 
-          {/* Username - Signup only */}
           {isSignup && (
             <div className="relative">
               <User className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 w-5 h-5" />
@@ -115,7 +112,6 @@ export default function AuthForm({ mode }) {
             </div>
           )}
 
-          {/* Email - Always visible */}
           <div className="relative">
             <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 w-5 h-5" />
             <input 
@@ -125,7 +121,6 @@ export default function AuthForm({ mode }) {
             />
           </div>
 
-          {/* Password - Hidden for Forgot Password mode */}
           {!isForgot && (
             <div className="relative">
               <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 w-5 h-5" />
@@ -137,7 +132,6 @@ export default function AuthForm({ mode }) {
             </div>
           )}
 
-          {/* Confirm Password - Signup only */}
           {isSignup && (
             <div className="relative">
               <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 w-5 h-5" />

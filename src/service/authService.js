@@ -46,3 +46,14 @@ export async function resetPassword(data) {
   if (!res.ok) throw new Error(result.message || "Reset failed");
   return result;
 }
+
+export const updateProfile = async (formData, token) => {
+  const res = await fetch("http://localhost:3005/api/updateprofile", {
+    method: "PUT",
+    headers: {
+      "Authorization": `Bearer ${token}`,
+    },
+    body: formData,
+  });
+  return res.json();
+};
