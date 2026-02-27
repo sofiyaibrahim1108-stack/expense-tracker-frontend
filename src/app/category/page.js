@@ -9,7 +9,7 @@ export default function CategoryPage() {
   const [categories, setCategories] = useState([]);
   const [formData, setFormData] = useState({ name: "", description: "" });
   const [loading, setLoading] = useState(false);
-  const [mounted, setMounted] = useState(false); // Hydration safety
+  const [mounted, setMounted] = useState(false); 
   
   const [editId, setEditId] = useState(null);
   const [editData, setEditData] = useState({ name: "", description: "" });

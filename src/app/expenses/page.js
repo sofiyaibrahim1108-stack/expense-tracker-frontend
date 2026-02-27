@@ -75,7 +75,7 @@ export default function ExpensePage() {
     }
   };
 
-  const totalAmount = expenses.reduce((acc, curr) => acc + (Number(curr.amount) || 0), 0);
+  // const totalAmount = expenses.reduce((acc, curr) => acc + (Number(curr.amount) || 0), 0);
 
   if (!mounted) return null;
 
@@ -83,7 +83,7 @@ export default function ExpensePage() {
     <div className="min-h-screen bg-slate-50 p-4 md:p-8 font-sans">
       <div className="max-w-6xl mx-auto space-y-8">
         
-        {/* Header & Stats Section */}
+        {/* Header & Stats Section
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
             <h1 className="text-3xl font-black text-slate-800 tracking-tighter uppercase italic">Expenses</h1>
@@ -96,7 +96,7 @@ export default function ExpensePage() {
               <h2 className="text-2xl font-black">₹{totalAmount.toLocaleString()}</h2>
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* Add Expense Form */}
         <div className="bg-white p-6 rounded-[2.5rem] border border-slate-200 shadow-xl shadow-slate-100">

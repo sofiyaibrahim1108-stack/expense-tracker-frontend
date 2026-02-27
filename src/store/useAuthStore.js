@@ -29,7 +29,7 @@ export const useAuthStore = create(
 
       logout: () => {
         set({ user: null, token: null, isAuthenticated: false });
-        localStorage.removeItem("auth-storage");
+        // localStorage.removeItem("auth-storage");
       },
     }),
     {

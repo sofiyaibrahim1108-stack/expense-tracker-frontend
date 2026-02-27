@@ -34,7 +34,7 @@ export default function Sidebar() {
             <span className="text-white font-black italic">E</span>
           </div>
           <h1 className="text-2xl font-black text-slate-800 tracking-tighter italic">
-            Expense.it
+            Expense
           </h1>
         </div>
       </div>
